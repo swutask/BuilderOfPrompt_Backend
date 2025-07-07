@@ -42,7 +42,7 @@ export const sendWebUrlEmail = async ({ email, token }) => {
         cid: "terms-of-service"
       })
     } else {
-      logger.warn('Terms of service pdf not found at :- ', termsOfServicePath)''
+      logger.warn('Terms of service pdf not found at :- ', termsOfServicePath);
     }
 
     let html = fs.readFileSync(filePath, "utf8");
