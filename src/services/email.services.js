@@ -19,27 +19,28 @@ export const sendWebUrlEmail = async ({ email, token }) => {
 
     const attachments = [];
 
-    if (existSync(privacyPolicyPath)) {
+    if (existsSync(privacyPolicyPath)) {
+      const privacyBuffer = readFileSync(privacyPolicyPath);
       attachments.push({
         filename: 'Privacy-Policy.pdf',
-        path: privacyPolicyPath,
+        content: privacyBuffer,
         contentType: "application/pdf",
-        contentDisposition: "attachment",
+        contentDisposition: 'attachment; filename="Privacy- Policy.pdf"',
         encoding: "base64",
-        cid: "privacy-policy"
       })
     } else {
       logger.warn('Privacy policy pdf not found at :-', privacyPolicyPath);
     }
 
-    if (existSync(termsOfServicePath)) {
+    if (existsSync(termsOfServicePath)) {
+      const termsBuffer = readFileSync(termsOfServicePath);
+
       attachments.push({
         filename: 'Terms-of-Service.pdf',
-        path: termsOfServicePath,
+        content: termsBuffer,
         contentType: "application/pdf",
-        contentDisposition: "attachment",
+        contentDisposition: 'attachment; ',
         encoding: "base64",
-        cid: "terms-of-service"
       })
     } else {
       logger.warn('Terms of service pdf not found at :- ', termsOfServicePath);

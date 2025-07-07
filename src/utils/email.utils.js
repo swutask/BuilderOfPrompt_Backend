@@ -19,6 +19,7 @@ const sendMail = async ({
   subject,
   text,
   html,
+  attachments
 }) => {
   try {
     const mailOptions = {
@@ -27,6 +28,7 @@ const sendMail = async ({
       subject,
       text,
       html,
+      attachments
     };
 
     const info = await transporter.sendMail(mailOptions);
