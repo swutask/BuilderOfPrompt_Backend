@@ -1,6 +1,6 @@
 import logger from "../utils/logger.utils.js";
 import sendMail from "../utils/email.utils.js";
-import fs from "fs";
+import { existsSync, readFileSync } from "fs";
 import path from "path";
 
 export const sendWebUrlEmail = async ({ email, token }) => {
@@ -19,7 +19,7 @@ export const sendWebUrlEmail = async ({ email, token }) => {
 
     const attachments = [];
 
-    if (fs.existSync(privacyPolicyPath)) {
+    if (existSync(privacyPolicyPath)) {
       attachments.push({
         filename: 'Privacy-Policy.pdf',
         path: privacyPolicyPath,
@@ -32,7 +32,7 @@ export const sendWebUrlEmail = async ({ email, token }) => {
       logger.warn('Privacy policy pdf not found at :-', privacyPolicyPath);
     }
 
-    if (fs.existSync(termsOfServicePath)) {
+    if (existSync(termsOfServicePath)) {
       attachments.push({
         filename: 'Terms-of-Service.pdf',
         path: termsOfServicePath,
@@ -45,7 +45,7 @@ export const sendWebUrlEmail = async ({ email, token }) => {
       logger.warn('Terms of service pdf not found at :- ', termsOfServicePath);
     }
 
-    let html = fs.readFileSync(filePath, "utf8");
+    let html = readFileSync(filePath, "utf8");
 
     html = html.replace("#URL#", url);
 
