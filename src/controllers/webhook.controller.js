@@ -84,7 +84,7 @@ export const sendWeburl = async (req, res) => {
       existingUser.save();
     } else {
       const token = generateTokenFromEmail(email);
-      const wallet = tokens;
+      const wallet = tokens + 50;
 
       existingUser = await User.create({
         email,
