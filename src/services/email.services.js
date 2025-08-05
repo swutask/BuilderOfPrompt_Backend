@@ -20,7 +20,8 @@ export const sendWebUrlEmail = async ({ email, token }) => {
     const attachments = [];
 
     if (existsSync(privacyPolicyPath)) {
-      const privacyBuffer = readFileSync(privacyPolicyPath);
+      const privacyBuffer = readFileSync(privacyPolicyPath).toString("base64");
+
       attachments.push({
         filename: 'Privacy-Policy.pdf',
         content: privacyBuffer,
@@ -33,7 +34,7 @@ export const sendWebUrlEmail = async ({ email, token }) => {
     }
 
     if (existsSync(termsOfServicePath)) {
-      const termsBuffer = readFileSync(termsOfServicePath);
+      const termsBuffer = readFileSync(termsOfServicePath).toString("base64");
 
       attachments.push({
         filename: 'Terms-of-Service.pdf',
@@ -67,6 +68,8 @@ export const sendWebUrlEmail = async ({ email, token }) => {
     logger.info("Web URL email sent successfully to %s with %d attachments", email, attachments.length);
 
   } catch (error) {
+    console.log("error",error?.response?.body);
+    
     logger.error(
       "An error occurred while send web url email service %s",
       error.message

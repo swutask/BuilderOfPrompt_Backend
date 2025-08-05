@@ -29,12 +29,7 @@ export const generateImage = async (req, res) => {
 
       existingPrompt.save();
 
-      //    [
-      //     "/images/68467996e538fc66dce8a8cf/image-1749477254742.png",
-      //     "/images/68467996e538fc66dce8a8cf/image-1749477264456.png",
-      //     "/images/68467996e538fc66dce8a8cf/image-1749477282995.png",
-      //     "/images/68467996e538fc66dce8a8cf/image-1749477307475.png"
-      // ]
+      
     } catch (error) {
       for (const file of data) {
         await removeFile(file);
