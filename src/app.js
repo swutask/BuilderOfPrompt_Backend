@@ -26,6 +26,7 @@ import userRoutes from "./routes/user.routes.js";
 import builderRoutes from "./routes/builder.routes.js";
 import promptRoutes from "./routes/prompt.routes.js";
 import mooodRoutes from "./routes/mood.routes.js";
+import linkRoutes from "./routes/link.routes.js";
 
 import imageGeneratorRoutes from "./routes/imageGenerator.routes.js";
 
@@ -34,5 +35,6 @@ app.use("/api/v1/builder", builderRoutes);
 app.use("/api/v1/prompt", promptRoutes);
 app.use("/api/v1/mood", mooodRoutes);
 app.use("/api/v1/image-generator", imageGeneratorRoutes);
+app.use("/api/v1/link-generate", linkRoutes);
 
 export default app;

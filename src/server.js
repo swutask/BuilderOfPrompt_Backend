@@ -25,7 +25,7 @@ const httpsServer = https.createServer(sslOptions, app);
   try {
     await connectDB();
 
-    app.listen(PORT, (req, res) => {
+    httpsServer.listen(PORT, (req, res) => {
       logger.info(`Server is running on port ${PORT}`);
     });
 

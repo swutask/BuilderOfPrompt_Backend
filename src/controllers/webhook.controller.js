@@ -86,8 +86,10 @@ export const sendWeburl = async (req, res) => {
       const token = generateTokenFromEmail(email);
       const wallet = tokens + 50;
 
+      const normalizedEmail = email?.trim().toLowerCase();
+
       existingUser = await User.create({
-        email,
+        email : normalizedEmail,
         userId,
         token,
         wallet,
@@ -125,7 +127,7 @@ export const sendWeburl = async (req, res) => {
       );
     }
   }
-};
+}
 
 export const imagesGenerated = async (req, res) => {
   try {
