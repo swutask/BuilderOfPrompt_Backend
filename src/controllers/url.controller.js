@@ -3,7 +3,16 @@ import logger from '../utils/logger.utils.js';
 
 export const getLink = async (req, res) => {
     try {
-        const { email } = req.params;
+        let { email } = req.params;
+
+        if (!email) {
+            return res.status(400).json({
+                success: false,
+                message: "Email parameter is required",
+            });
+        }
+
+        email = email.trim().toLowerCase();
 
         console.log("email",  email);
         
