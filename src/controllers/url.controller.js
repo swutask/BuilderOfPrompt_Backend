@@ -12,7 +12,7 @@ export const getLink = async (req, res) => {
             });
         }
 
-        email = email.trim().toLowerCase();        
+        email = email.trim().toLowerCase();      
 
         const user = await User.findOne({email});
         console.log("kk", user);
